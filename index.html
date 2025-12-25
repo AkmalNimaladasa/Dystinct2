@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dystinct | The Top 1% of Sri Lankan Talent</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Manrope"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#2563EB', // Royal Blue
+                            600: '#1D4ED8',
+                        },
+                        dark: {
+                            900: '#0B0F19', // Deepest Navy
+                            800: '#111827',
+                            card: '#161e32',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'scroll': 'scroll 25s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Premium Polish Utilities */
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #60A5FA, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Hide scrollbar for clean horizontal scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-dark-900 dark:text-slate-200 transition-colors duration-300" x-data="{ mobileMenu: false }">
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-display font-extrabold tracking-tighter dark:text-white z-50">
+                DYSTINCT<span class="text-brand-500">.</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#comparison" class="text-sm font-medium hover:text-brand-500 transition">Why Us</a>
+                <a href="#roles" class="text-sm font-medium hover:text-brand-500 transition">Roles</a>
+                <a href="#faq" class="text-sm font-medium hover:text-brand-500 transition">FAQ</a>
+                
+                <button onclick="toggleTheme()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition">
+                    <svg class="w-5 h-5 text-slate-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    <svg class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </button>
+
+                <a href="#hire" class="bg-white text-dark-900 dark:bg-brand-600 dark:text-white px-6 py-2.5 rounded-lg text-sm font-bold transition hover:scale-105 shadow-lg shadow-brand-500/20">
+                    Find Talent
+                </a>
+            </div>
+
+            <button @click="mobileMenu = !mobileMenu" class="md:hidden z-50 text-slate-500 dark:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <div x-show="mobileMenu" class="md:hidden fixed inset-0 bg-white dark:bg-dark-900 z-40 flex flex-col justify-center items-center space-y-8 p-6">
+            <a @click="mobileMenu = false" href="#comparison" class="text-2xl font-bold dark:text-white">Why Us</a>
+            <a @click="mobileMenu = false" href="#roles" class="text-2xl font-bold dark:text-white">Roles</a>
+            <a @click="mobileMenu = false" href="#hire" class="text-xl font-bold text-brand-500">Hire Now</a>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden z-10">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="inline-flex items-center space-x-2 bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Operational Leverage for US Startups</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight leading-[1.1] mb-8 dark:text-white">
+                Global talent.<br>
+                <span class="gradient-text">Hyper-local mindset.</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mb-12">
+                We connect US Founders with the top 1% of Sri Lankan operators. 
+                Experience Silicon Valley work ethic at a distinct global advantage.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#hire" class="px-8 py-4 bg-dark-900 text-white dark:bg-white dark:text-dark-900 rounded-xl font-bold hover:scale-105 transition shadow-2xl">Start Hiring</a>
+                <a href="#roles" class="px-8 py-4 glass-card text-slate-900 dark:text-white rounded-xl font-bold hover:bg-white/5 transition">Explore Roles</a>
+            </div>
+        </div>
+        
+        <div class="mt-20 max-w-6xl mx-auto relative rounded-xl bg-slate-900 p-2 shadow-2xl border border-slate-800 transform rotate-1 hover:rotate-0 transition duration-700">
+            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1800&q=80" class="rounded-lg opacity-80" alt="Dashboard">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+        </div>
+    </header>
+
+    <section class="py-10 border-y border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-black/20 overflow-hidden">
+        <p class="text-center text-xs font-bold uppercase tracking-widest text-slate-400 mb-8">Talent placed in ecosystem companies like</p>
+        <div class="relative flex overflow-x-hidden group">
+            <div class="animate-scroll whitespace-nowrap flex space-x-16 text-slate-400 dark:text-slate-600 font-bold text-2xl uppercase tracking-widest opacity-50">
+                <span>Acme Corp</span><span>Linear</span><span>Stripe</span><span>YCombinator</span><span>Sequoia</span><span>Notion</span><span>Ramp</span><span>Mercury</span>
+                <span>Acme Corp</span><span>Linear</span><span>Stripe</span><span>YCombinator</span><span>Sequoia</span><span>Notion</span><span>Ramp</span><span>Mercury</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold dark:text-white mb-4">The Dystinct Difference</h2>
+                <p class="text-slate-500">Why high-growth startups switch from Upwork to Dystinct.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl opacity-60 hover:opacity-100 transition">
+                    <h3 class="text-xl font-bold dark:text-white mb-6">Typical Freelancers</h3>
+                    <ul class="space-y-4 text-sm text-slate-500 dark:text-slate-400">
+                        <li class="flex items-center"><span class="text-red-500 mr-2">✕</span> Inconsistent availability</li>
+                        <li class="flex items-center"><span class="text-red-500 mr-2">✕</span> Transactional relationship</li>
+                        <li class="flex items-center"><span class="text-red-500 mr-2">✕</span> Language/Cultural barriers</li>
+                        <li class="flex items-center"><span class="text-red-500 mr-2">✕</span> Multiple clients at once</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl border-brand-500 bg-brand-500/5 relative transform md:-translate-y-4 shadow-2xl shadow-brand-500/10">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase">Recommended</div>
+                    <h3 class="text-2xl font-bold dark:text-white mb-6">Dystinct Talent</h3>
+                    <ul class="space-y-4 text-sm dark:text-white font-medium">
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✔</span> <strong class="ml-1">Embedded Team Member</strong> (Full-time focus)</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✔</span> <strong class="ml-1">Top 1% Vetted</strong> (Technical & Psychometric)</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✔</span> <strong class="ml-1">US Culture Trained</strong> (No communication gap)</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✔</span> <strong class="ml-1">Managed Success</strong> (We handle HR/Payroll)</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl opacity-60 hover:opacity-100 transition">
+                    <h3 class="text-xl font-bold dark:text-white mb-6">US-Based Hire</h3>
+                    <ul class="space-y-4 text-sm text-slate-500 dark:text-slate-400">
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✔</span> High Quality Work</li>
+                        <li class="flex items-center"><span class="text-red-500 mr-2">✕</span> $80k - $120k / year cost</li>
+                        <li class="flex items-center"><span class="text-red-500 mr-2">✕</span> High overhead & benefits</li>
+                        <li class="flex items-center"><span class="text-red-500 mr-2">✕</span> Slow hiring process</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roles" class="py-24 px-6 bg-slate-100 dark:bg-dark-800/50" x-data="{ activeTab: 'ea' }">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div>
+                <h2 class="text-4xl font-bold dark:text-white mb-8">Specialized Roles.<br>Not Generalists.</h2>
+                
+                <div class="flex space-x-4 mb-8 border-b border-slate-300 dark:border-white/10 pb-4 overflow-x-auto no-scrollbar">
+                    <button @click="activeTab = 'ea'" :class="{ 'text-brand-500 border-brand-500': activeTab === 'ea', 'text-slate-500 border-transparent': activeTab !== 'ea' }" class="pb-4 text-lg font-bold border-b-2 transition whitespace-nowrap">Executive Support</button>
+                    <button @click="activeTab = 'ops'" :class="{ 'text-brand-500 border-brand-500': activeTab === 'ops', 'text-slate-500 border-transparent': activeTab !== 'ops' }" class="pb-4 text-lg font-bold border-b-2 transition whitespace-nowrap">Growth & Ops</button>
+                    <button @click="activeTab = 'finance'" :class="{ 'text-brand-500 border-brand-500': activeTab === 'finance', 'text-slate-500 border-transparent': activeTab !== 'finance' }" class="pb-4 text-lg font-bold border-b-2 transition whitespace-nowrap">Finance</button>
+                </div>
+
+                <div x-show="activeTab === 'ea'" x-transition.opacity.duration.500ms>
+                    <p class="text-lg text-slate-500 dark:text-slate-400 mb-6">The right hand to the CEO. Our EAs don't just schedule meetings; they manage relationships, handle travel logistics, and ensure your focus remains on strategy.</p>
+                    <ul class="grid grid-cols-2 gap-4 mb-8">
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-brand-500 rounded-full mr-3"></div>Inbox Zero Management</li>
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-brand-500 rounded-full mr-3"></div>Personal Tasks</li>
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-brand-500 rounded-full mr-3"></div>Meeting Prep & Minutes</li>
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-brand-500 rounded-full mr-3"></div>Project Coordination</li>
+                    </ul>
+                </div>
+
+                <div x-show="activeTab === 'ops'" x-transition.opacity.duration.500ms style="display: none;">
+                    <p class="text-lg text-slate-500 dark:text-slate-400 mb-6">Scale your revenue engine without the burnout. Growth specialists handle the tedious parts of sales and marketing.</p>
+                    <ul class="grid grid-cols-2 gap-4 mb-8">
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-3"></div>LinkedIn Lead Gen</li>
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-3"></div>CRM Management</li>
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-3"></div>Customer Support</li>
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-3"></div>Data Enrichment</li>
+                    </ul>
+                </div>
+
+                <div x-show="activeTab === 'finance'" x-transition.opacity.duration.500ms style="display: none;">
+                    <p class="text-lg text-slate-500 dark:text-slate-400 mb-6">Keep your books clean and your runway clear. CIMA/ACCA qualified professionals from Sri Lanka.</p>
+                    <ul class="grid grid-cols-2 gap-4 mb-8">
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3"></div>Bookkeeping (QBO/Xero)</li>
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3"></div>Invoicing & AR/AP</li>
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3"></div>Expense Management</li>
+                        <li class="flex items-center text-slate-700 dark:text-slate-300"><div class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3"></div>Financial Modeling</li>
+                    </ul>
+                </div>
+
+                <a href="#hire" class="inline-flex items-center font-bold text-brand-500 hover:text-brand-400">
+                    See Candidate Profiles <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+            </div>
+
+            <div class="relative">
+                <div class="absolute inset-0 bg-brand-500 blur-[100px] opacity-20"></div>
+                <img x-show="activeTab === 'ea'" x-transition.opacity src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" class="relative rounded-2xl shadow-2xl border border-white/10" alt="EA">
+                <img x-show="activeTab === 'ops'" x-transition.opacity src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?auto=format&fit=crop&w=800&q=80" class="relative rounded-2xl shadow-2xl border border-white/10" alt="Ops" style="display: none;">
+                <img x-show="activeTab === 'finance'" x-transition.opacity src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80" class="relative rounded-2xl shadow-2xl border border-white/10" alt="Finance" style="display: none;">
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 px-6 max-w-4xl mx-auto" x-data="{ selected: null }">
+        <h2 class="text-3xl font-bold text-center dark:text-white mb-12">Frequently Asked Questions</h2>
+        
+        <div class="space-y-4">
+            <div class="glass-card rounded-xl overflow-hidden">
+                <button @click="selected !== 1 ? selected = 1 : selected = null" class="flex justify-between items-center w-full p-6 text-left">
+                    <span class="font-bold dark:text-slate-200">Are they fluent in English?</span>
+                    <span class="text-brand-500" x-text="selected === 1 ? '-' : '+'"></span>
+                </button>
+                <div x-show="selected === 1" class="p-6 pt-0 text-slate-500 dark:text-slate-400 text-sm">
+                    Yes. Sri Lanka has a literacy rate of 92% and English is the primary business language. Our vetting process specifically tests for "Western nuance" and communication style, not just grammar.
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl overflow-hidden">
+                <button @click="selected !== 2 ? selected = 2 : selected = null" class="flex justify-between items-center w-full p-6 text-left">
+                    <span class="font-bold dark:text-slate-200">How does the timezone work?</span>
+                    <span class="text-brand-500" x-text="selected === 2 ? '-' : '+'"></span>
+                </button>
+                <div x-show="selected === 2" class="p-6 pt-0 text-slate-500 dark:text-slate-400 text-sm">
+                    Sri Lanka is GMT+5:30. Many of our talents work shifted hours to overlap with US mornings (EST/PST), or they work asynchronously—meaning you assign tasks before bed, and they are done when you wake up.
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl overflow-hidden">
+                <button @click="selected !== 3 ? selected = 3 : selected = null" class="flex justify-between items-center w-full p-6 text-left">
+                    <span class="font-bold dark:text-slate-200">What if it doesn't work out?</span>
+                    <span class="text-brand-500" x-text="selected === 3 ? '-' : '+'"></span>
+                </button>
+                <div x-show="selected === 3" class="p-6 pt-0 text-slate-500 dark:text-slate-400 text-sm">
+                    We offer a 14-day replacement guarantee. If the fit isn't right, we rematch you immediately at no extra cost. We handle the awkward conversations so you don't have to.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hire" class="py-24 px-6">
+        <div class="max-w-5xl mx-auto glass-card rounded-[3rem] p-8 md:p-20 relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-600/30 rounded-full blur-[100px]"></div>
+
+            <div class="relative z-10 grid md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-4xl font-extrabold dark:text-white mb-6">Ready to scale?</h2>
+                    <p class="text-slate-500 dark:text-slate-400 mb-8">
+                        Fill out the form and our founders will personally review your needs. We typically reply within 2 hours via WhatsApp.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" class="w-12 h-12 rounded-full border-2 border-brand-500" alt="Founder">
+                        <div>
+                            <p class="text-sm font-bold dark:text-white">Akmal N.</p>
+                            <p class="text-xs text-slate-500">Founder, Dystinct</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form onsubmit="sendToWhatsApp(event)" class="space-y-4">
+                    <input id="name" type="text" required placeholder="Your Name" class="w-full bg-slate-50 dark:bg-dark-800 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                    <input id="company" type="text" required placeholder="Company Website" class="w-full bg-slate-50 dark:bg-dark-800 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                    <select id="role" class="w-full bg-slate-50 dark:bg-dark-800 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                        <option>I need an Executive Assistant</option>
+                        <option>I need Operations Support</option>
+                        <option>I need Financial Support</option>
+                        <option>Other</option>
+                    </select>
+                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:scale-[1.02]">
+                        Start Hiring via WhatsApp
+                    </button>
+                    <p class="text-center text-xs text-slate-400">Direct line: +94 77 512 0885</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-100 dark:bg-dark-900 border-t border-slate-200 dark:border-white/5 py-16 px-6 text-sm">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <div class="col-span-2 md:col-span-1">
+                <a href="#" class="text-xl font-extrabold dark:text-white">DYSTINCT.</a>
+                <p class="text-slate-500 mt-4">Sri Lanka's premier talent gateway.</p>
+            </div>
+            <div>
+                <h4 class="font-bold dark:text-white mb-4">Company</h4>
+                <ul class="space-y-2 text-slate-500">
+                    <li><a href="#" class="hover:text-brand-500">About</a></li>
+                    <li><a href="#" class="hover:text-brand-500">Careers</a></li>
+                    <li><a href="#" class="hover:text-brand-500">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold dark:text-white mb-4">Roles</h4>
+                <ul class="space-y-2 text-slate-500">
+                    <li><a href="#" class="hover:text-brand-500">Executive Assistants</a></li>
+                    <li><a href="#" class="hover:text-brand-500">Sales Ops</a></li>
+                    <li><a href="#" class="hover:text-brand-500">Bookkeepers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold dark:text-white mb-4">Legal</h4>
+                <ul class="space-y-2 text-slate-500">
+                    <li><a href="#" class="hover:text-brand-500">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-brand-500">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto text-center text-slate-500 pt-8 border-t border-slate-200 dark:border-white/5">
+            &copy; 2025 Dystinct Talent. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Check Local Storage
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+        }
+
+        // WhatsApp Logic
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const company = document.getElementById('company').value;
+            const role = document.getElementById('role').value;
+            const phone = "94775120885";
+            
+            const text = `*New Lead from Dystinct Site* %0A%0A👤 *Name:* ${name}%0A🏢 *Company:* ${company}%0A💼 *Looking for:* ${role}%0A%0A_Please reply with next steps._`;
+            
+            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+        }
+    </script>
+</body>
+</html>
